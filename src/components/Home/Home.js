@@ -17,12 +17,12 @@ class Home extends Component {
 
   render() {
     let { topUS } = this.props;
-
+    
     return (
       <main className="home">
         <div className="intro-slides">
-          {/* <Carousel slides={this.state.topNewsUS} /> */}
-          {/* <TopNews topNews={this.state.topNewsUS.slice(0, 4)} /> */}
+          <Carousel slides={topUS} />
+          <TopNews topNews={topUS.slice(0, 4)} />
         </div>
         {topUS.length > 0 ? <News topUS={topUS} /> : <Loader />}
       </main>
