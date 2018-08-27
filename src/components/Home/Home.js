@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Api from '../../Api';
 
 import News from '../News/NewsList';
+import Carousel from '../Carousel/Carousel';
 import Loader from '../Loader/Loader';
 
 export default class Home extends Component {
@@ -15,7 +16,7 @@ export default class Home extends Component {
     Api.then(data=>{
       console.log(data)
       this.setState(prevState=>({
-        topNewsUS: prevState.topNewsUS.concat([])
+        topNewsUS: prevState.topNewsUS.concat(data.articles)
       }));
     })
   }
@@ -23,6 +24,7 @@ export default class Home extends Component {
   render() {
     return(
       <main className="home">
+        <Carousel slides={this.state.topNewsUS.slice(0,4)}/>
         {
           this.state.topNewsUS.length > 0 ? 
             <News topUS={this.state.topNewsUS}/> 
