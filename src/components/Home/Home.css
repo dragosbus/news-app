@@ -1,0 +1,7 @@
+.intro-slides {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    padding: 1rem;
+}
