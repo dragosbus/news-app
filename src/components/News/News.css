@@ -19,7 +19,7 @@
     position: relative;
 }
 
-.news p {
+.news a {
     font-size: 1.6rem;
     text-align: center;
     background: rgb(29, 29, 29);
@@ -28,6 +28,11 @@
     padding: 1rem;
     color: aliceblue;
     height: 6rem;
+    
+}
+
+.news a:hover {
+    text-decoration: underline;
 }
 
 .news img {

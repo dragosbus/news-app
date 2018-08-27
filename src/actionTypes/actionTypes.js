@@ -1,0 +1,1 @@
+export const FETCH_TOP_US_NEWS = 'FETCH_TOP_US_NEWS';

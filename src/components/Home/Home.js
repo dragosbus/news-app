@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import Api from '../../Api';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import * as ActionCreators from '../../actionCreators/actionCreators';
 
 import News from '../News/NewsList';
 import Carousel from '../Carousel/Carousel';
@@ -8,31 +10,32 @@ import Loader from '../Loader/Loader';
 
 import './Home.css';
 
-export default class Home extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      topNewsUS: []
-    };
-  }
+class Home extends Component {
   componentDidMount() {
-    Api.then(data => {
-      console.log(data);
-      this.setState(prevState => ({
-        topNewsUS: prevState.topNewsUS.concat(data.articles)
-      }));
-    });
+    this.props.getTopUS();
   }
 
   render() {
+    let { topUS } = this.props;
+
     return (
       <main className="home">
         <div className="intro-slides">
-          <Carousel slides={this.state.topNewsUS} />
-          <TopNews topNews={this.state.topNewsUS.slice(0, 4)} />
+          {/* <Carousel slides={this.state.topNewsUS} /> */}
+          {/* <TopNews topNews={this.state.topNewsUS.slice(0, 4)} /> */}
         </div>
-        {this.state.topNewsUS.length > 0 ? <News topUS={this.state.topNewsUS} /> : <Loader />}
+        {topUS.length > 0 ? <News topUS={topUS} /> : <Loader />}
       </main>
     );
   }
 }
+
+const mapStateToProps = state => ({
+  topUS: state.topUS
+});
+
+const mapDispatchToProps = dispatch => ({
+  getTopUS: bindActionCreators(ActionCreators.getTopUSMiddle, dispatch)
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
