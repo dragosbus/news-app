@@ -2,7 +2,10 @@ import React from "react";
 
 const ElementNews = props => {
   return(
-    <li>{props.title}</li>
+    <li className="news">
+      <img src={props.urlToImage}/>
+      <p>{props.title}</p>
+    </li>
   );
 };
 

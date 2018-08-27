@@ -1,5 +1,6 @@
 import React from "react";
 import ElementNews from './NewsElement';
+import './News.css';
 
 const News = props => {
   return(

@@ -24,7 +24,7 @@ export default class Home extends Component {
   render() {
     return(
       <main className="home">
-        <Carousel slides={this.state.topNewsUS.slice(0,4)}/>
+        <Carousel slides={this.state.topNewsUS}/>
         {
           this.state.topNewsUS.length > 0 ? 
             <News topUS={this.state.topNewsUS}/> 
