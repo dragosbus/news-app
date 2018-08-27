@@ -21,11 +21,13 @@
 
 .news p {
     font-size: 1.6rem;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
     text-align: center;
+    background: rgb(29, 29, 29);
+    width: 100%;
+    margin: 0 auto;
+    padding: 1rem;
+    color: aliceblue;
+    height: 6rem;
 }
 
 .news img {
@@ -35,12 +37,26 @@
 
 @media (min-width: 660px) {
     .news {
-        width: 45%;
+        width: 40%;
+    }
+    
+    .news:nth-of-type(3n+2) {
+        width: 60%;
     }
 }
 
 @media (min-width: 960px) {
     .news {
         width: 30%;
+        height: 30rem;
+    }
+
+    .news img {
+        width: 100%;
+        height: 20rem;
+    }
+
+    .news:nth-of-type(3n+2) {
+        width: 40%;
     }
 }
