@@ -31,7 +31,7 @@ class Home extends Component {
 
   render() {
     let { topUS } = this.props;
-    console.log(topUS)
+    
     return (
       <main className="home">
         <div className="intro-slides">
