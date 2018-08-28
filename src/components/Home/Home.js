@@ -13,11 +13,25 @@ import './Home.css';
 class Home extends Component {
   componentDidMount() {
     this.props.getTopUS();
+
+    window.addEventListener('scroll', this.onScroll, false);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.onScroll, false);
+  }
+
+  onScroll = () => {
+    if (
+      (window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 500) 
+    ) {
+      this.props.getMoreNews();
+    }
   }
 
   render() {
     let { topUS } = this.props;
-    
+    console.log(topUS)
     return (
       <main className="home">
         <div className="intro-slides">
@@ -35,7 +49,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  getTopUS: bindActionCreators(ActionCreators.getTopUSMiddle, dispatch)
+  getTopUS: bindActionCreators(ActionCreators.getTopUSMiddle, dispatch),
+  getMoreNews: bindActionCreators(ActionCreators.getMoreNewsMiddle, dispatch)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

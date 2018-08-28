@@ -11,15 +11,20 @@ export const getSingleNews = article => ({
     payload: article
 });
 
+export const getMoreNews = data => ({
+    type: ActionTypes.FETCH_MORE_NEWS,
+    payload: data
+})
+
 export const getTopUSMiddle = () => dispatch => {
-    Api.then(data => {
+    Api('https://newsapi.org/v2/top-headlines?country=us').then(data => {
         console.log(data);
         dispatch(getTopUS(data.articles))
     });
 };
 
 export const getSingleNewsMiddle = id => dispatch => {
-    Api.then(data => {
+    Api('https://newsapi.org/v2/top-headlines?country=us').then(data => {
         if (id <= data.articles.length) {
             dispatch(getSingleNews(data.articles[id]))
         } else {
@@ -27,4 +32,11 @@ export const getSingleNewsMiddle = id => dispatch => {
         }
 
     });
+};
+
+export const getMoreNewsMiddle = () => dispatch => {
+    Api('https://newsapi.org/v2/everything?domains=wsj.com,nytimes.com')
+        .then(data => {
+            dispatch(getMoreNews(data.articles))
+        })
 };
