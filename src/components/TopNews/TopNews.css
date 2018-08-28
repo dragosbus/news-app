@@ -1,12 +1,18 @@
 .top-news {
     display: none;
     padding: 1rem;
-    background: rgba(7, 7, 7, 0.253);
+    background: rgba(17, 16, 16, 0.959);
     margin: 0 auto;
 }
 
 .top-news h2 {
     height: 25%;
+    color: antiquewhite;
+    line-height: 1.5;
+    letter-spacing: 1.25px;
+    font-size: 1.6rem;
+    background: rgba(19, 18, 18, 0.589);
+    padding: 1rem;
 }
 
 @media(min-width: 660px) {

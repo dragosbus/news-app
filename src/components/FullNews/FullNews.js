@@ -11,7 +11,7 @@ class FullNews extends React.Component {
   }
   render() {
     let { singleNews } = this.props;
-    console.log(singleNews)
+    
     let element = typeof singleNews === 'object' ? (
       <div className="article">
         <img src={singleNews.urlToImage} alt={singleNews.title} />
