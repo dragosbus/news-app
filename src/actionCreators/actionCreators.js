@@ -19,8 +19,12 @@ export const getTopUSMiddle = () => dispatch => {
 };
 
 export const getSingleNewsMiddle = id => dispatch => {
-    Api.then(data=>{
-        console.log(id)
-        dispatch(getSingleNews(data.articles[id]))
+    Api.then(data => {
+        if (id <= data.articles.length) {
+            dispatch(getSingleNews(data.articles[id]))
+        } else {
+            dispatch(getSingleNews('Article not Found'))
+        }
+
     });
 };

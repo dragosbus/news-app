@@ -1,6 +1,6 @@
 import * as ActionTypes from '../actionTypes/actionTypes';
 
-const singleNewsReducer = (state = [], {
+const singleNewsReducer = (state = {}, {
     payload,
     type
 }) => {

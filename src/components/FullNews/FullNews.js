@@ -11,8 +11,8 @@ class FullNews extends React.Component {
   }
   render() {
     let { singleNews } = this.props;
-    
-    let element = singleNews ? (
+    console.log(singleNews)
+    let element = typeof singleNews === 'object' ? (
       <div className="article">
         <img src={singleNews.urlToImage} alt={singleNews.title} />
         <h2>{singleNews.title}</h2>
@@ -23,7 +23,7 @@ class FullNews extends React.Component {
         </a>
       </div>
     ) : (
-      <p>Article not found</p>
+      <p>{singleNews}</p>
     );
 
     return element;
