@@ -27,7 +27,16 @@ class App extends Component {
                 );
               }}
             />
-            <Route path="/movies/:id" component={FullNews} />
+            <Route
+              path="/movies/:id"
+              render={props => {
+                return (
+                  <Provider store={store}>
+                    <FullNews id={props.match.params.id} />
+                  </Provider>
+                );
+              }}
+            />
           </Switch>
         </div>
       </BrowserRouter>

@@ -6,9 +6,21 @@ export const getTopUS = data => ({
     payload: data
 });
 
+export const getSingleNews = article => ({
+    type: ActionTypes.FETCH_SINGLE_NEWS,
+    payload: article
+});
+
 export const getTopUSMiddle = () => dispatch => {
     Api.then(data => {
         console.log(data);
         dispatch(getTopUS(data.articles))
+    });
+};
+
+export const getSingleNewsMiddle = id => dispatch => {
+    Api.then(data=>{
+        console.log(id)
+        dispatch(getSingleNews(data.articles[id]))
     });
 };
