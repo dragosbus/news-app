@@ -1,6 +1,6 @@
 import * as ActionTypes from "../actionTypes/actionTypes";
 
-const topUSReducer = (state = [], { payload, type }) => {
+export const topUSReducer = (state = [], { payload, type }) => {
 	switch (type) {
 		case ActionTypes.FETCH_TOP_US_NEWS:
 			return [...payload];
@@ -10,5 +10,3 @@ const topUSReducer = (state = [], { payload, type }) => {
 			return state;
 	}
 };
-
-export default topUSReducer;

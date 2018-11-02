@@ -1,6 +1,6 @@
 import * as ActionTypes from '../actionTypes/actionTypes';
 
-const singleNewsReducer = (state = {}, {
+export const singleNewsReducer = (state = {}, {
     payload,
     type
 }) => {
@@ -11,5 +11,3 @@ const singleNewsReducer = (state = {}, {
             return state;
     }
 }
-
-export default singleNewsReducer;

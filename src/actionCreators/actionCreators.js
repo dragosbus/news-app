@@ -16,6 +16,11 @@ export const getMoreNews = data => ({
 	payload: data
 });
 
+export const getSources = data => ({
+	type: ActionTypes.GET_SOURCES,
+	payload: data
+})
+
 export const getTopUSMiddle = () => dispatch => {
 	Api("https://newsapi.org/v2/top-headlines?country=us").then(data => {
 		dispatch(getTopUS(data.articles));
@@ -38,4 +43,11 @@ export const getMoreNewsMiddle = () => dispatch => {
 			dispatch(getMoreNews(data.articles));
 		}
 	);
+};
+
+export const fetchSourcesMiddle = () => dispatch => {
+	Api('https://newsapi.org/v2/sources?apiKey=API_KEY')
+		.then(res=>{
+			dispatch(getSources(res));
+		});
 };
