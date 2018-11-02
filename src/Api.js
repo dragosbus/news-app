@@ -1,4 +1,4 @@
-import { API_KEY } from "../API_KEY";
+import { API_KEY } from "../API/API_KEY";
 
 const Api = url => {
 	return fetch(url, {

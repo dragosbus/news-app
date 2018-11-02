@@ -1,56 +1,66 @@
-import React, { Component } from 'react';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-import * as ActionCreators from '../../actionCreators/actionCreators';
+import React, { Component } from "react";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+import * as ActionCreators from "../../actionCreators/actionCreators";
 
-import News from '../News/NewsList';
-import Carousel from '../Carousel/Carousel';
-import TopNews from '../TopNews/TopNews';
-import Loader from '../Loader/Loader';
+import News from "../News/NewsList";
+import Carousel from "../Carousel/Carousel";
+import TopNews from "../TopNews/TopNews";
+import Loader from "../Loader/Loader";
 
-import './Home.css';
+import "./Home.css";
 
 class Home extends Component {
-  componentDidMount() {
-    this.props.getTopUS();
+	componentDidMount() {
+		this.props.getTopUS();
 
-    window.addEventListener('scroll', this.onScroll, false);
-  }
+		window.addEventListener("scroll", this.onScroll, false);
+	}
 
-  componentWillUnmount() {
-    window.removeEventListener('scroll', this.onScroll, false);
-  }
+	componentWillUnmount() {
+		window.removeEventListener("scroll", this.onScroll, false);
+	}
 
-  onScroll = () => {
-    if (
-      (window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 500) 
-    ) {
-      this.props.getMoreNews();
-    }
-  }
+	onScroll = () => {
+		const {
+			clientHeight,
+			scrollTop,
+			scrollHeight
+		} = window.document.documentElement;
+		console.log(clientHeight, scrollTop, scrollHeight);
+		if (
+			window.innerHeight + window.scrollY >=
+			document.body.offsetHeight - 300
+		) {
+			this.props.getMoreNews();
+		}
+	};
 
-  render() {
-    let { topUS } = this.props;
-    
-    return (
-      <main className="home">
-        <div className="intro-slides">
-          <Carousel slides={topUS} />
-          <TopNews topNews={topUS.slice(0, 4)} />
-        </div>
-        {topUS.length > 0 ? <News topUS={topUS} /> : <Loader />}
-      </main>
-    );
-  }
+	render() {
+		let { topUS } = this.props;
+
+		return (
+			<main className="home">
+				<div className="intro-slides">
+					<Carousel slides={topUS} />
+					<TopNews topNews={topUS.slice(0, 4)} />
+				</div>
+				{topUS.length > 0 ? <News topUS={topUS} /> : <Loader />}
+			</main>
+		);
+	}
 }
 
 const mapStateToProps = state => ({
-  topUS: state.topUS
+	topUS: state.topUS
 });
 
 const mapDispatchToProps = dispatch => ({
-  getTopUS: bindActionCreators(ActionCreators.getTopUSMiddle, dispatch),
-  getMoreNews: bindActionCreators(ActionCreators.getMoreNewsMiddle, dispatch)
+	getTopUS: bindActionCreators(ActionCreators.getTopUSMiddle, dispatch),
+	getMoreNews: bindActionCreators(ActionCreators.getMoreNewsMiddle, dispatch)
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(Home);
