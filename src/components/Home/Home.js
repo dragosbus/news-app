@@ -11,23 +11,24 @@ import Loader from "../Loader/Loader";
 import "./Home.css";
 
 class Home extends Component {
+
+	state = {};
+
+	static getDerivedStatedFromProps(props ,state) {
+		return props;
+	}
+
 	componentDidMount() {
 		this.props.getTopUS();
 
-		window.addEventListener("scroll", this.onScroll, false);
+		window.addEventListener("scroll", this.onScroll);
 	}
 
 	componentWillUnmount() {
-		window.removeEventListener("scroll", this.onScroll, false);
+		window.removeEventListener("scroll", this.onScroll);
 	}
 
 	onScroll = () => {
-		const {
-			clientHeight,
-			scrollTop,
-			scrollHeight
-		} = window.document.documentElement;
-		console.log(clientHeight, scrollTop, scrollHeight);
 		if (
 			window.innerHeight + window.scrollY >=
 			document.body.offsetHeight - 300
