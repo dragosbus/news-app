@@ -12,34 +12,12 @@ import FullNews from './components/FullNews/FullNews';
 class App extends Component {
   render() {
     return (
-      <BrowserRouter>
-        <div className="app">
-          <Header />
-          <Switch>
-            <Route
-              exact
-              path="/"
-              render={() => {
-                return (
-                  <Provider store={store}>
-                    <Home />
-                  </Provider>
-                );
-              }}
-            />
-            <Route
-              path="/movies/:id"
-              render={props => {
-                return (
-                  <Provider store={store}>
-                    <FullNews id={props.match.params.id} />
-                  </Provider>
-                );
-              }}
-            />
-          </Switch>
-        </div>
-      </BrowserRouter>
+      <div className="app">
+        <Header />
+        <Provider store={store}>
+          <Home />
+        </Provider>
+      </div>
     );
   }
 }

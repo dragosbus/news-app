@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 const ElementNews = props => {
   let imgNull =
@@ -8,7 +7,7 @@ const ElementNews = props => {
   return (
     <li className="news">
       <img src={props.urlToImage || imgNull} alt={titleImg} />
-      <Link to={`/movies/${props.id}`}>{props.title}</Link>
+      <p onClick={props.showFullArticle}>{props.title}</p>
     </li>
   );
 };

@@ -20,7 +20,7 @@
     animation: fade-in 0.45s ease-in;
 }
 
-.news a {
+.news p {
     font-size: 1.4rem;
     text-align: center;
     background: rgb(29, 29, 29);
@@ -29,10 +29,10 @@
     padding: 1.25rem;
     color: aliceblue;
     height: 6.5rem;
-    
+    cursor: pointer;
 }
 
-.news a:hover {
+.news p:hover {
     text-decoration: underline;
 }
 

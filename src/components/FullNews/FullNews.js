@@ -1,19 +1,21 @@
 import React from 'react';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-import * as ActionCreators from '../../actionCreators/actionCreators';
 
 import './FullNews.css';
 
 class FullNews extends React.Component {
-  componentDidMount() {
-    this.props.getSingleNews(this.props.id);
-  }
   render() {
-    let { singleNews } = this.props;
-    
+    let singleNews = this.props.fullNews;
+
     let element = typeof singleNews === 'object' ? (
-      <div className="article">
+      <div 
+        className="article" 
+        style={{display: this.props.fullNewsShowed ? 'block' : 'none'}}
+      >
+        <button 
+          className="close-fullNews" 
+          onClick={this.props.toggleFullNews}>
+          X
+        </button>
         <img src={singleNews.urlToImage} alt={singleNews.title} />
         <h2>{singleNews.title}</h2>
         <span>{singleNews.publishedAt}</span>
@@ -30,15 +32,4 @@ class FullNews extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
-  singleNews: state.singleNews
-});
-
-const mapDispatchToProps = dispatch => ({
-  getSingleNews: bindActionCreators(ActionCreators.getSingleNewsMiddle, dispatch)
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(FullNews);
+export default FullNews;
