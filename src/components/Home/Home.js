@@ -13,8 +13,8 @@ import FullNews from '../FullNews/FullNews';
 
 class Home extends Component {
   state = {
-		fullNews: false
-	};
+    isShowedFullNews: false
+  };
 
   static getDerivedStatedFromProps(props, state) {
     return props;
@@ -34,15 +34,15 @@ class Home extends Component {
     if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 300) {
       this.props.getMoreNews();
     }
-	};
-	
-	toggleFullNews = () => {
-		this.setState({fullNews: !this.state.fullNews})
-	};
-	
+  };
+
+  toggleFullNews = () => {
+    this.setState({ isShowedFullNews: !this.state.isShowedFullNews });
+  };
 
   render() {
-    let { topUS, fullNews } = this.props;
+		let { topUS, fullNews } = this.props;
+		let {isShowedFullNews} = this.state;
 
     return (
       <main className="home">
@@ -50,28 +50,24 @@ class Home extends Component {
           <Carousel slides={topUS} />
           <TopNews topNews={topUS.slice(0, 4)} />
         </div>
-				{
-					topUS.length > 0 
-						? 
-						<News 
-							topUS={topUS} 
-							showFullArticle={this.props.getFullNews} toggleFullNews={this.toggleFullNews}/> 
-						: 
-						<Loader />
-				}
-				<FullNews 
-					fullNews={fullNews} 
-					fullNewsShowed={this.state.fullNews}
-					toggleFullNews={this.toggleFullNews}
-				/>
+        {topUS.length > 0 ? (
+          <News topUS={topUS} showFullArticle={this.props.getFullNews} toggleFullNews={this.toggleFullNews} />
+        ) : (
+          <Loader />
+        )}
+        <FullNews
+					fullNews = {fullNews}
+          fullNewsShowed={isShowedFullNews}
+          toggleFullNews={this.toggleFullNews}
+        />
       </main>
     );
   }
 }
 
 const mapStateToProps = state => ({
-	topUS: state.topUS,
-	fullNews: state.singleNews
+  topUS: state.topUS,
+  fullNews: state.singleNews
 });
 
 const mapDispatchToProps = dispatch => ({
