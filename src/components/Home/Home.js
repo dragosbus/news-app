@@ -39,6 +39,7 @@ class Home extends Component {
 	toggleFullNews = () => {
 		this.setState({fullNews: !this.state.fullNews})
 	};
+	
 
   render() {
     let { topUS, fullNews } = this.props;
@@ -49,11 +50,19 @@ class Home extends Component {
           <Carousel slides={topUS} />
           <TopNews topNews={topUS.slice(0, 4)} />
         </div>
-				{topUS.length > 0 ? <News topUS={topUS} showFullArticle={this.props.getFullNews} /> : <Loader />}
+				{
+					topUS.length > 0 
+						? 
+						<News 
+							topUS={topUS} 
+							showFullArticle={this.props.getFullNews} toggleFullNews={this.toggleFullNews}/> 
+						: 
+						<Loader />
+				}
 				<FullNews 
 					fullNews={fullNews} 
 					fullNewsShowed={this.state.fullNews}
-					toggleFullNews={this.state.toggleFullNews}
+					toggleFullNews={this.toggleFullNews}
 				/>
       </main>
     );

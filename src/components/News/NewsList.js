@@ -10,7 +10,10 @@ const News = props => {
 					key={i} 
 					{...news} 
 					id={i} 
-					showFullArticle={() => props.showFullArticle(i)}
+					showFullArticle={() => {
+						props.showFullArticle(i);
+						props.toggleFullNews();
+					}}
 				/>
 			})}
 		</ul>
